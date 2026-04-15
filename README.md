@@ -1,6 +1,6 @@
 # Simulador Télos - Catálogo de Filmes (Nível #7)
 
-Este projeto é uma API REST desenvolvida em Node.js e Express para o gerenciamento de um catálogo de filmes. [span_1](start_span)[span_2](start_span)O objetivo principal é aplicar fundamentos de Node.js, roteamento, controladores e manipulação de dados em memória (CRUD)[span_1](end_span)[span_2](end_span).
+Este projeto é uma API REST desenvolvida em Node.js e Express para o gerenciamento de um catálogo de filmes. O objetivo principal é aplicar fundamentos de Node.js, roteamento, controladores e manipulação de dados em memória (CRUD).
 
 ## 🚀 Tecnologias Utilizadas
 
