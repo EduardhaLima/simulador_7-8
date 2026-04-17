@@ -44,7 +44,8 @@ Abaixo estão as rotas disponíveis para teste no **Thunder Client**:
 | Método | Endpoint | Descrição |
 |---|---|---|
 | POST | /movies | Cria um novo filme no catálogo |
-| GET | /movies | Lista todos os filmes |
+| GET (list)| /movies | Lista todos os filmes |
+| GET (read)| /movies/:id | Lista um único objeto |
 | PUT | /movies/:id | Atualiza um filme pelo ID |
 | DELETE | /movies/:id | Remove um filme pelo ID |
 
