@@ -1,78 +1,48 @@
-let lastId = 0; 
-let movies = [];
+const Movie = require('../models/movies')
 
 class MovieController {
-    create(req, res) {
-        const { title, description, year, genres, image, video } = req.body;
-        
-        lastId++; 
-        
-        const newMovie = {
-            id: lastId, 
-            title,
-            description,
-            year,
-            genres,
-            image,
-            video
-        };
-        
-        movies.push(newMovie);
-        return res.status(201).json(newMovie);
-    }
-    /* Durante minha procura além das aulas, entendi que list funciona para ver os registros de forma geral (E como tem apenas o que estou adicionando, não daria problema). Enquanto isso, o read geralmente implica em recuperar um único dado específico. Por esse motivo, decidi pelo list na produção do meu código. */
-
-    list(req, res) {
-         return res.json(movies);
+    async create(req, res) {
+        try {
+            const newMovie = await Movie.create(req.body);
+            return res.status(201).json(newMovie);
+        } catch (error) {
+            return res.status(400).json({ error: "Erro ao criar filme" });
+        }
     }
 
-    /* Poderia substitui o list por read ou manter os dois, com esse código abaixo; gerando assim, dois GETs.
-    read(req, res) {
-        const { id } = req.params; 
-
-        const movie = movies.find(m => m.id === Number(id));
-
-        if (!movie) {
-            return res.status(404).json({ error: "Filme não encontrado" });
-        }
-
-        return res.json(movie);
-    }*/
-
-    update(req, res) {
-        const { id } = req.params;
-        const { title, description, year, genres, image, video } = req.body;
-        
-        const index = movies.findIndex(m => m.id === Number(id));
-
-        if (index === -1) {
-            return res.status(404).json({ error: "Filme não encontrado" });
-        }
-
-        const movieUpdate = {
-            id: Number(id),
-            title,
-            description,
-            year,
-            genres,
-            image,
-            video
-        };
-
-        movies[index] = movieUpdate;
-        return res.json(movieUpdate);
+    async list(req, res) {
+        const movies = await Movie.find();
+        return res.json(movies);
     }
 
-    delete(req, res) {
-        const { id } = req.params;
-        const index = movies.findIndex(m => m.id === Number(id));
-
-        if (index === -1) {
-            return res.status(404).json({ error: "Filme não encontrado" });
+    async show(req, res) {
+        try {
+            const movie = await Movie.findById(req.params.id);
+            if (!movie) return res.status(404).json({ error: "Filme não encontrado" });
+            return res.json(movie);
+        } catch (error) {
+            return res.status(400).json({ error: "ID inválido" });
         }
+    }
 
-        movies.splice(index, 1);
-        return res.status(204).send();
+    async update(req, res) {
+        try {
+            const movieUpdate = await Movie.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            if (!movieUpdate) return res.status(404).json({ error: "Filme não encontrado" });
+            return res.json(movieUpdate);
+        } catch (error) {
+            return res.status(400).json({ error: "Erro ao atualizar" });
+        }
+    }
+
+    async delete(req, res) {
+        try {
+            const movie = await Movie.findByIdAndDelete(req.params.id);
+            if (!movie) return res.status(404).json({ error: "Filme não encontrado" });
+            return res.status(204).send();
+        } catch (error) {
+            return res.status(400).json({ error: "Erro ao deletar" });
+        }
     }
 }
 

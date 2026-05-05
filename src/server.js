@@ -1,13 +1,12 @@
 const express = require('express');
+const connectDB = require('./config/db');
 const movieRoutes = require('./routes/m.routes');
-
-let movies = [];
-let lastId = 0; 
 
 const app = express();
 
-app.use(express.json());
+connectDB();
 
+app.use(express.json());
 app.use(movieRoutes);
 
 const PORT = 3000;
