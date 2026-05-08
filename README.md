@@ -1,23 +1,22 @@
-```markdown
 # Simulador Télos - API de Filmes Persistente (Nível #8)
 
 Este projeto marca a evolução do Catálogo de Filmes. Deixamos de usar o armazenamento volátil em memória para implementar uma solução profissional com **MongoDB** e **Mongoose**, garantindo que os dados sejam salvos permanentemente e sobrevivam a reinicializações do servidor.
 
 ## 🚀 Novidades do Nível #8
-* **Persistência Real:** Integração com MongoDB Atlas/Local.
-* **Modelagem de Dados:** Uso de Schemas e Models do Mongoose.
-* **Programação Assíncrona:** Implementação total com `async/await` e tratamento de exceções (`try/catch`).
-* **Robustez:** API preparada para falhas de conexão e validação de dados.
+* *Persistência Real:* Integração com MongoDB Atlas/Local.
+* *Modelagem de Dados:* Uso de Schemas e Models do Mongoose.
+* *Programação Assíncrona:* Implementação total com `async/await` e tratamento de exceções (`try/catch`).
+* *Robustez:* API preparada para falhas de conexão e validação de dados.
 
 ## 🛠️ Tecnologias Utilizadas
-* **Node.js** (Ambiente de execução)
-* **Express** (Framework Web)
-* **Mongoose** (Modelagem de objetos MongoDB)
-* **MongoDB** (Banco de dados NoSQL)
-* **Nodemon** (Reload automático em desenvolvimento)
+* *Node.js* (Ambiente de execução)
+* *Express* (Framework Web)
+* *Mongoose* (Modelagem de objetos MongoDB)
+* *MongoDB* (Banco de dados NoSQL)
+* *Nodemon* (Reload automático em desenvolvimento)
 
 ## 📁 Estrutura do Projeto
-```text
+```list
 src/
  ├── config/
  │    └── db.js            # Configuração da conexão com MongoDB
@@ -30,6 +29,7 @@ src/
  └── server.js             # Inicialização e conexão com o banco
 
 ```
+
 ## ⚙️ Como Executar
  1. **Clone o repositório e acesse a pasta:**
    ```bash
