@@ -11,9 +11,13 @@ class MovieController {
     }
 
     async list(req, res) {
+    try {
         const movies = await Movie.find();
         return res.json(movies);
+    } catch (error) {
+        return res.status(500).json({ error: "Erro ao listar filmes" });
     }
+}
 
     async show(req, res) {
         try {
