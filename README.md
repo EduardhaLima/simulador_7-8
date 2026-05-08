@@ -79,11 +79,13 @@ src/
  * [x] **Tratamento de Erros:** Blocos try/catch implementados para evitar crashes.
  * [x] **Persistência:** Dados permanecem no banco após reiniciar o processo.
 **Desenvolvido como parte do currículo de Backend da Télos.**
-```
-
-### O que mudou do seu anterior para este:
-1.  **Status Codes:** Adicionei uma coluna de sucesso (como o `201` para POST e `204` para DELETE) que dá um ar mais profissional.
-2.  **Estrutura:** Incluí a pasta `config` e `models`, que não existiam no nível 7.
-3.  **Destaque Técnico:** Foquei na parte de `async/await` e Mongoose, que são os temas centrais do Nível 8.
 
 ```
+
+```
+## O que mudou do seu anterior para este:
+1.  *Status Codes:* Adicionei uma coluna de sucesso (como o `201` para POST e `204` para DELETE) que dá um ar mais profissional.
+2.  *Estrutura:* Incluí a pasta `config` e `models`, que não existiam no nível 7.
+3.  *Destaque Técnico:* Foquei na parte de `async/await` e Mongoose, que são os temas centrais do Nível 8.
+```
+
