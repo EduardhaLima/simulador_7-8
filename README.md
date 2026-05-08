@@ -1,70 +1,89 @@
-# Simulador Télos - Catálogo de Filmes (Nível #7)
+```markdown
+# Simulador Télos - API de Filmes Persistente (Nível #8)
 
-Este projeto é uma API REST desenvolvida em Node.js e Express para o gerenciamento de um catálogo de filmes. O objetivo principal é aplicar fundamentos de Node.js, roteamento, controladores e manipulação de dados em memória (CRUD).
+Este projeto marca a evolução do Catálogo de Filmes. Deixamos de usar o armazenamento volátil em memória para implementar uma solução profissional com **MongoDB** e **Mongoose**, garantindo que os dados sejam salvos permanentemente e sobrevivam a reinicializações do servidor.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Novidades do Nível #8
+* **Persistência Real:** Integração com MongoDB Atlas/Local.
+* **Modelagem de Dados:** Uso de Schemas e Models do Mongoose.
+* **Programação Assíncrona:** Implementação total com `async/await` e tratamento de exceções (`try/catch`).
+* **Robustez:** API preparada para falhas de conexão e validação de dados.
 
-* **Node.js** (v25.2.0)
+## 🛠️ Tecnologias Utilizadas
+* **Node.js** (Ambiente de execução)
 * **Express** (Framework Web)
-* **Yarn** (Gerenciador de pacotes)
-* **Nodemon** (Ambiente de desenvolvimento)
+* **Mongoose** (Modelagem de objetos MongoDB)
+* **MongoDB** (Banco de dados NoSQL)
+* **Nodemon** (Reload automático em desenvolvimento)
 
 ## 📁 Estrutura do Projeto
-
 ```text
 src/
+ ├── config/
+ │    └── db.js            # Configuração da conexão com MongoDB
  ├── controllers/
- │    └── m.controller.js  # Lógica de negócio e CRUD em memória
+ │    └── movieController.js # Lógica de banco com async/await
+ ├── models/
+ │    └── Movie.js         # Definição do Schema do Mongoose
  ├── routes/
- │    └── m.routes.js      # Definição e separação das rotas
- └── server.js             # Inicialização do servidor Express
+ │    └── movieRoutes.js   # Definição dos endpoints
+ └── server.js             # Inicialização e conexão com o banco
 
 ```
-## 🛠️ Como Executar o Projeto
- 1. **Acesse a pasta do projeto:**
+## ⚙️ Como Executar
+ 1. **Clone o repositório e acesse a pasta:**
    ```bash
-   cd simulador-7
+   cd simulador-8
    
    ```
  2. **Instale as dependências:**
    ```bash
-   yarn install
+  yarn install
    
    ```
- 3. **Inicie o servidor:**
+ 3. **Configure sua String de Conexão:**
    ```bash
-   yarn dev
+   No arquivo src/config/db.js, certifique-se de que a URL do MongoDB está correta.
    
    ```
-   O servidor estará rodando em: http://localhost:3000
+ 4. **Inicie o servidor:**
+   ```bash
+  yarn dev
+   
+   ```
+## 📡 Endpoints da API (CRUD)
+| Método | Endpoint | Descrição | Status Sucesso |
+|---|---|---|---|
+| **POST** | /movies | Salva um novo filme no MongoDB | 201 |
+| **GET** | /movies | Lista todos os filmes do banco | 200 |
+| **GET** | /movies/:id | Busca um filme específico por ID | 200 |
+| **PUT** | /movies/:id | Atualiza os dados de um filme | 200 |
+| **DELETE** | /movies/:id | Remove um filme permanentemente | 204 |
 
-## 📡 Endpoints da API
-
-Abaixo estão as rotas disponíveis para teste no **Thunder Client**:
-| Método | Endpoint | Descrição |
-|---|---|---|
-| POST | /movies | Cria um novo filme no catálogo |
-| GET (list)| /movies | Lista todos os filmes |
-| GET (read)| /movies/:id | Lista um único objeto |
-| PUT | /movies/:id | Atualiza um filme pelo ID |
-| DELETE | /movies/:id | Remove um filme pelo ID |
-
-### Modelo de Entidade (JSON):
+### Exemplo de Objeto (JSON):
 ```json
 {
-  "title": "Inception",
-  "description": "Um ladrão que rouba segredos corporativos.",
-  "year": 2010,
-  "genres": ["Sci-Fi", "Action"],
-  "image": "inception.jpg",
+  "title": "Interstellar",
+  "description": "Uma equipe de exploradores viaja através de um buraco de minhoca.",
+  "year": 2014,
+  "genres": ["Sci-Fi", "Drama"],
+  "image": "poster.jpg",
   "video": "trailer.mp4"
 }
 
 ```
-## 📋 Critérios de Aceitação (Avaliação)
- * [x] **Controllers e Routes:** Implementação de controladores e rotas em arquivos separados.
- * [x] **CRUD em memória:** Armazenamento de dados em estrutura local (array).
- * [x] **Endpoints obrigatórios:** Funcionamento correto de todas as rotas HTTP.
- * [x] **Organização:** Código estruturado e sem redundâncias de arquivos.
-Desenvolvido por Eduardo para o currículo de Fundamentos de APIs REST.
+## 📋 Requisitos de Entrega (Checklist)
+ * [x] **Conexão MongoDB:** Configurada com sucesso via Mongoose.
+ * [x] **Modelagem (Schemas):** Schema definido com campos tipados e obrigatórios.
+ * [x] **Lógica Assíncrona:** Uso de async/await em todas as rotas do Controller.
+ * [x] **Tratamento de Erros:** Blocos try/catch implementados para evitar crashes.
+ * [x] **Persistência:** Dados permanecem no banco após reiniciar o processo.
+**Desenvolvido como parte do currículo de Backend da Télos.**
+```
+
+### O que mudou do seu anterior para este:
+1.  **Status Codes:** Adicionei uma coluna de sucesso (como o `201` para POST e `204` para DELETE) que dá um ar mais profissional.
+2.  **Estrutura:** Incluí a pasta `config` e `models`, que não existiam no nível 7.
+3.  **Destaque Técnico:** Foquei na parte de `async/await` e Mongoose, que são os temas centrais do Nível 8.
+
 ```
